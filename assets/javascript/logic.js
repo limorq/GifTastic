@@ -2,7 +2,7 @@
 var currentUrl = true;
 
 //create an array of tv shows
-var items = ["doctor+who", "sherlock", "orange+is+the+new+black", "asher", "orphan+black", "how+to+get+away+with+murder", "the+walking+dead", "outlander"];
+var items = ["doctor+who", "sherlock", "orange+is+the+new+black", "archer", "orphan+black", "how+to+get+away+with+murder", "the+walking+dead", "outlander"];
 
 //create function to display item info
 function displayItemInfo() {
@@ -20,9 +20,6 @@ function displayItemInfo() {
 		//create a variable to hold item div
 		var itemDiv = $("<div class = 'item'>");
 
-		//click event listener for all images
-		$(document).on("click", ".img", toggleGif);
-
 		//loop thru all 10 objects in response
 		for (var i=0; i<10; i++) {
 
@@ -30,7 +27,7 @@ function displayItemInfo() {
 			var itemUrl = response.data[i].images.original_still.url;
 			
 			//create an element to display the item
-			var itemEl = "<div class = 'img' id = num" + i + "><img src ='" + itemUrl + "'>";
+			var itemEl = "<div class = 'img' id = num" + i + "><img src ='" + itemUrl + "'><p>Rating: " + response.data[i].rating;
 
 			//appending image to the element
 			itemDiv.append(itemEl);
@@ -38,6 +35,9 @@ function displayItemInfo() {
 			//display on screen
 			$("#items-view").prepend(itemDiv);
 		}
+
+		//click event listener for all images
+		$(document).on("click", ".img", toggleGif);
 
 		function toggleGif() {
 
@@ -55,7 +55,7 @@ function displayItemInfo() {
 				var newUrl = response.data[ix].images.preview_gif.url;
 				
 				//create an element to display the new item
-				var newEl = "<img src ='" + newUrl + "'>";
+				var newEl = "<img src ='" + newUrl + "'><p>Rating: " + response.data[ix].rating;
 
 				//replace on screen
 				$(newId).html(newEl);
@@ -70,7 +70,7 @@ function displayItemInfo() {
 				var newUrl = response.data[ix].images.original_still.url;
 				
 				//create an element to display the new item
-				var newEl = "<img src ='" + newUrl + "'>";
+				var newEl = "<img src ='" + newUrl + "'><p>Rating: " + response.data[ix].rating;
 
 				//replace on screen
 				$(newId).html(newEl);
