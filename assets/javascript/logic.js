@@ -20,6 +20,9 @@ function displayItemInfo() {
 		//create a variable to hold item div
 		var itemDiv = $("<div class = 'item'>");
 
+		//click event listener for all images
+		$(document).on("click", ".img", toggleGif);
+
 		//loop thru all 10 objects in response
 		for (var i=0; i<10; i++) {
 
@@ -40,18 +43,16 @@ function displayItemInfo() {
 
 			//get index of image
 			var temp = $(this).attr("id");
-			temp.split(/[0-9]+/);
-			console.log(temp);
-			var ix = temp[3];
-			console.log(ix);
+			temp.split(/[0-9]+/);			
+			var ix = temp[3];			
 			var newId = "#num" + ix;
-debugger;
+
 			if(currentUrl) {
 				
 				currentUrl = false;
 
 				//create variable to hold new image url
-				var newUrl = response.data[ix].images.looping.mp4;
+				var newUrl = response.data[ix].images.preview_gif.url;
 				
 				//create an element to display the new item
 				var newEl = "<img src ='" + newUrl + "'>";
@@ -77,8 +78,7 @@ debugger;
 			}		
 		}
 
-		//click event listener for all images
-		$(document).on("click", ".img", toggleGif);
+		
 
 	});
 }
