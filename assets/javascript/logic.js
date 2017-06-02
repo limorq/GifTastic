@@ -52,7 +52,7 @@ function displayItemInfo() {
 				currentUrl = false;
 
 				//create variable to hold new image url
-				var newUrl = response.data[ix].images.preview_gif.url;
+				var newUrl = response.data[ix].images.fixed_height.url;
 				
 				//create an element to display the new item
 				var newEl = "<img src ='" + newUrl + "'><p>Rating: " + response.data[ix].rating;
@@ -118,6 +118,9 @@ $("#addItem").on("click", function(event) {
 
 	//call render button function
 	renderButtons();
+
+	//TA! I cannot figure out how to clearmy inputline on my form???
+	form.getElementsById("itemInput").innerHTML("");
 });
 
 	//click event listener for all buttons
